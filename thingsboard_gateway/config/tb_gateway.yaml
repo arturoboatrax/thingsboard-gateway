@@ -1,10 +1,10 @@
 thingsboard:
-  host: demo.thingsboard.io
+  host: api.devicewise.com
   port: 1883
   remoteShell: false
   remoteConfiguration: false
   security:
-    accessToken: PUT_YOUR_GW_ACCESS_TOKEN_HERE
+    accessToken: ''
 storage:
   type: memory
   read_records_count: 100

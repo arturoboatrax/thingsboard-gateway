@@ -86,7 +86,8 @@ class TBDeviceMqttClient:
         if token == "":
             log.warning("token is not set, connection without tls wont be established")
         else:
-            self._client.username_pw_set(token)
+            self._client.username_pw_set('test_boat', password='test_boat')
+            #self._client.username_pw_set(token)
         self._lock = RLock()
 
         self._attr_request_dict = {}
