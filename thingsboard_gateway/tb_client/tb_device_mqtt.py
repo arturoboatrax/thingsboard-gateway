@@ -79,7 +79,7 @@ class TBPublishInfo:
 
 class TBDeviceMqttClient:
     def __init__(self, host, port=1883, token=None, username=None, quality_of_service=None):
-        self._client = paho.Client(client_id="876iyuljhgjvgfyouity7oyfghljlyt", clean_session=True, userdata=None, protocol=MQTTv311, transport="tcp")
+        self._client = paho.Client(client_id="876iyuljhgjvgfyouity7oyfghljlyt", clean_session=True, userdata=None, protocol=paho.MQTTv311, transport="tcp")
         self.__default_quality_of_service = quality_of_service if quality_of_service is not None else 1
         self.__host = host
         self.__port = port
