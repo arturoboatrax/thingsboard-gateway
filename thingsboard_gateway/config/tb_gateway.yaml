@@ -5,6 +5,7 @@ thingsboard:
   remoteConfiguration: false
   security:
     accessToken: ''
+    username: test_boat
 storage:
   type: memory
   read_records_count: 100
