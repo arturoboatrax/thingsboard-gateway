@@ -42,9 +42,10 @@ class TBClient(threading.Thread):
         self.__is_connected = False
         self.__stopped = False
         self.__paused = False
+        log.error("this is the username in here: %s or %s",credentials.get("username"), credentials["username"])
         if credentials.get("accessToken") is not None and credentials.get("username") is not None:
             self.__token = str(credentials["accessToken"])
-            self.__token = str(credentials["username"])
+            self.__username = str(credentials["username"])
         self.client = TBGatewayMqttClient(self.__host, self.__port, self.__token, self.__username, self, quality_of_service=self.__default_quality_of_service)
         if self.__tls:
             self.__ca_cert = credentials.get("caCert")
