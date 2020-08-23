@@ -79,14 +79,12 @@ class TBPublishInfo:
 
 class TBDeviceMqttClient:
     def __init__(self, host, port=1883, token=None, quality_of_service=None):
-        self._client = paho.Client()
+        self._client = paho.Client(client_id="876iyuljhgjvgfyouity7oyfghljlyt", clean_session=True, userdata=None, protocol=M
+QTTv311, transport="tcp")
         self.__default_quality_of_service = quality_of_service if quality_of_service is not None else 1
         self.__host = host
         self.__port = port
-        if token == "":
-            log.warning("token is not set, connection without tls wont be established")
-        else:
-            self._client.username_pw_set('test_boat', password='test_boat')
+        #self._client.username_pw_set("test_boat", password="WO7hrhBPhDBJekS3")
             #self._client.username_pw_set(token)
         self._lock = RLock()
 
