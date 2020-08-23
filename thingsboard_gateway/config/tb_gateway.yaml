@@ -4,7 +4,7 @@ thingsboard:
   remoteShell: false
   remoteConfiguration: false
   security:
-    accessToken: ''
+    accessToken: WO7hrhBPhDBJekS3
     username: test_boat
 storage:
   type: memory
@@ -16,10 +16,10 @@ storage:
 #  max_read_records_count: 10
 #  max_records_per_file: 10000
 connectors:
-  -
-    name: MQTT Broker Connector
-    type: mqtt
-    configuration: mqtt.json
+# -
+#    name: MQTT Broker Connector
+#    type: mqtt
+#    configuration: mqtt.json
 
 #  -
 #    name: Modbus Connector
@@ -46,10 +46,10 @@ connectors:
 #    type: request
 #    configuration: request.json
 #
-#  -
-#    name: CAN Connector
-#    type: can
-#    configuration: can.json
+  -
+    name: CAN Connector
+    type: can
+    configuration: can.json
 #
 #  -
 #    name: BACnet Connector
