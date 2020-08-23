@@ -199,7 +199,8 @@ class CanConnector(Connector, Thread):
                 while not self.__stopped:
                     message = reader.get_message()
                     if message is not None:
-                        # log.debug("[%s] New CAN message received %s", self.get_name(), message)
+                        log.debug("[%s] New CAN message received %s", self.get_name(), message)
+                        log.error("[%s] New CAN message received %s", self.get_name(), message)
                         self.__process_message(message)
                     self.__check_if_error_happened()
             except Exception as e:
