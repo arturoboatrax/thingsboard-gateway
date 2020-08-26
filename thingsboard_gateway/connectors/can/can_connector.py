@@ -200,7 +200,6 @@ class CanConnector(Connector, Thread):
                     message = reader.get_message()
                     if message is not None:
                         log.debug("[%s] New CAN message received %s", self.get_name(), message)
-                        log.error("[%s] New CAN message received %s", self.get_name(), message)
                         self.__process_message(message)
                     self.__check_if_error_happened()
             except Exception as e:
@@ -305,8 +304,12 @@ class CanConnector(Connector, Thread):
         if cmd_conf is not None:
             cmd_id = int.from_bytes(message.data[cmd_conf["start"]:cmd_conf["start"] + cmd_conf["length"]],
                                     cmd_conf["byteorder"])
+            log.error("[%s] cmd_id %d", self.get_name(), cmd_id)
+            
         else:
             cmd_id = self.NO_CMD_ID
+            log.error("No cmd_id")
+        
 
         if cmd_id not in self.__nodes[message.arbitration_id]:
             log.debug("[%s] Ignoring CAN message. Unknown cmd_id %d", self.get_name(), cmd_id)
