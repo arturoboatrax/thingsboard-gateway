@@ -1,6 +1,6 @@
 {
   "interface": "socketcan",
-  "channel": "can0",
+  "channel": "can1",
   "backend": {
     "fd": true
   },

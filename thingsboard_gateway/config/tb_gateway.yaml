@@ -50,6 +50,11 @@ connectors:
     name: CAN Connector
     type: can
     configuration: can.json
+
+  -
+    name: NMEA Connector
+    type: nmea
+    configuration: nmea.json
 #
 #  -
 #    name: BACnet Connector

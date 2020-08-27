@@ -47,6 +47,7 @@ DEFAULT_CONNECTORS = {
             "ble": "BLEConnector",
             "request": "RequestConnector",
             "can": "CanConnector",
+            "nmea": "NmeaConnector",
             "bacnet": "BACnetConnector",
             "odbc": "OdbcConnector",
             "rest": "RESTConnector",
