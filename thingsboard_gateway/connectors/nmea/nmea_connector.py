@@ -385,43 +385,43 @@ class NmeaConnector(Connector, Thread):
             "backend": config.get("backend", {})
         }
 
-        for device_config in config.get("devices"):
-            is_device_config_valid = False
-            device_name = device_config["name"]
-            device_type = device_config.get("type", self.__connector_type)
-            strict_eval = device_config.get("strictEval", self.DEFAULT_STRICT_EVAL_FLAG)
+        # for device_config in config.get("devices"):
+        #     is_device_config_valid = False
+        #     device_name = device_config["name"]
+        #     device_type = device_config.get("type", self.__connector_type)
+        #     strict_eval = device_config.get("strictEval", self.DEFAULT_STRICT_EVAL_FLAG)
 
-            self.__devices[device_name] = {}
-            self.__devices[device_name]["enableUnknownRpc"] = device_config.get("enableUnknownRpc",
-                                                                                self.DEFAULT_ENABLE_UNKNOWN_RPC)
-            self.__devices[device_name]["overrideRpcConfig"] = True if self.__devices[device_name]["enableUnknownRpc"] \
-                else device_config.get("overrideRpcConfig", self.DEFAULT_OVERRIDE_RPC_PARAMS)
+        #     self.__devices[device_name] = {}
+        #     self.__devices[device_name]["enableUnknownRpc"] = device_config.get("enableUnknownRpc",
+        #                                                                         self.DEFAULT_ENABLE_UNKNOWN_RPC)
+        #     self.__devices[device_name]["overrideRpcConfig"] = True if self.__devices[device_name]["enableUnknownRpc"] \
+        #         else device_config.get("overrideRpcConfig", self.DEFAULT_OVERRIDE_RPC_PARAMS)
 
-            self.__converters[device_name] = {}
+        #     self.__converters[device_name] = {}
 
-            if not strict_eval:
-                log.info("[%s] Data converters for '%s' device will use non-strict eval", self.get_name(), device_name)
+        #     if not strict_eval:
+        #         log.info("[%s] Data converters for '%s' device will use non-strict eval", self.get_name(), device_name)
 
-            if "serverSideRpc" in device_config and device_config["serverSideRpc"]:
-                is_device_config_valid = True
-                self.__rpc_calls[device_name] = {}
-                self.__converters[device_name]["downlink"] = self.__get_converter(device_config.get("converters"),
-                                                                                  False)
-                for rpc_config in device_config["serverSideRpc"]:
-                    rpc_config["strictEval"] = strict_eval
-                    self.__rpc_calls[device_name][rpc_config["method"]] = rpc_config
+        #     if "serverSideRpc" in device_config and device_config["serverSideRpc"]:
+        #         is_device_config_valid = True
+        #         self.__rpc_calls[device_name] = {}
+        #         self.__converters[device_name]["downlink"] = self.__get_converter(device_config.get("converters"),
+        #                                                                           False)
+        #         for rpc_config in device_config["serverSideRpc"]:
+        #             rpc_config["strictEval"] = strict_eval
+        #             self.__rpc_calls[device_name][rpc_config["method"]] = rpc_config
 
-            if "attributeUpdates" in device_config and device_config["attributeUpdates"]:
-                is_device_config_valid = True
-                self.__shared_attributes[device_name] = {}
+        #     if "attributeUpdates" in device_config and device_config["attributeUpdates"]:
+        #         is_device_config_valid = True
+        #         self.__shared_attributes[device_name] = {}
 
-                if "downlink" not in self.__converters[device_name]:
-                    self.__converters[device_name]["downlink"] = self.__get_converter(device_config.get("converters"),
-                                                                                      False)
-                for attribute_config in device_config["attributeUpdates"]:
-                    attribute_config["strictEval"] = strict_eval
-                    attribute_name = attribute_config.get("attributeOnThingsBoard") or attribute_config.get("attribute")
-                    self.__shared_attributes[device_name][attribute_name] = attribute_config
+        #         if "downlink" not in self.__converters[device_name]:
+        #             self.__converters[device_name]["downlink"] = self.__get_converter(device_config.get("converters"),
+        #                                                                               False)
+        #         for attribute_config in device_config["attributeUpdates"]:
+        #             attribute_config["strictEval"] = strict_eval
+        #             attribute_name = attribute_config.get("attributeOnThingsBoard") or attribute_config.get("attribute")
+        #             self.__shared_attributes[device_name][attribute_name] = attribute_config
 
             for config_key in ["timeseries", "attributes"]:
                 if config_key not in device_config or not device_config[config_key]:
