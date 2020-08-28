@@ -194,7 +194,7 @@ class NmeaConnector(Connector, Thread):
                     if output:
                         #print (output.strip())
                         reader = output.strip()
-
+                        log.info(reader)
                 #log.info("[%s] Connected to Nmea bus (interface=%s,channel=%s)", self.get_name(), interface, channel)
 
                 if self.__polling_messages:
