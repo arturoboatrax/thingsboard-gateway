@@ -16,6 +16,7 @@ import re
 import sched
 import time
 import subprocess
+import json
 from threading import Thread
 from copy import copy
 from random import choice
@@ -194,7 +195,12 @@ class NmeaConnector(Connector, Thread):
                     if output:
                         #print (output.strip())
                         reader = output.strip()
-                        log.info(reader)
+                        jsonMsg = json.loads(reader)
+                        log.info(jsonMsg.pgn)
+                        log.info(jsonMsg.fields)
+
+
+                        
                 #log.info("[%s] Connected to Nmea bus (interface=%s,channel=%s)", self.get_name(), interface, channel)
 
                 if self.__polling_messages:
