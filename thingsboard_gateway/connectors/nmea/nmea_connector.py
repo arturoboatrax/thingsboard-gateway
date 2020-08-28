@@ -196,8 +196,9 @@ class NmeaConnector(Connector, Thread):
                         #print (output.strip())
                         reader = output.strip()
                         jsonMsg = json.loads(reader)
-                        log.info(jsonMsg.pgn)
-                        log.info(jsonMsg.fields)
+                        #log.info(jsonMsg.pgn)
+                        #log.info(jsonMsg.fields)
+                        pprint(jsonMsg)
 
 
                         
